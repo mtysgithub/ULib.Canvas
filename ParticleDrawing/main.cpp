@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <Windows.h>
 #include <math.h>
 #include <iostream>
-#include <gl/glut.h>
 #include "Gut.h"
 #include "GutInput.h"
 #include "Vector4.h"
