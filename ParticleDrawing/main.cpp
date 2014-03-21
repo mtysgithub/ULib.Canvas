@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
+
 #include "Gut.h"
+#include "GutWin32.h"
 #include "GutInput.h"
 #include "Vector4.h"
 using namespace std;
 
-#define USE_MOUSE 1
+#include "opencv2/opencv.hpp"
+using namespace cv;
+
+#define  _HIDE_WND_ 0
 
 void RenderFrameOpenGL(void);
 void InitParticleDrawing();
@@ -28,6 +33,12 @@ int main(int argc, char *argv[])
 {
 	char *device = "opengl";
 	GutCreateWindow(0, 0, g_cw, g_ch, "Particle");
+
+#if _HIDE_WND_
+	HWND hWnd = GutGetWindowHandleWin32();
+	ShowWindow(hWnd, HIDE_WINDOW);
+#endif
+
 	if (!GutInitGraphicsDevice(device))
 	{
 		exit(0);
@@ -42,6 +53,7 @@ int main(int argc, char *argv[])
 		RenderFrameOpenGL();
 	}
 	GutReleaseGraphicsDevice();
+	GutCloseWindow();
 	return 0;
 }
 
@@ -108,7 +120,7 @@ void InitParticleDrawing()
 	//Matrix4x4 view_matrix = GutMatrixLookAtRH(g_eye, g_lookat, g_up);
 	Matrix4x4 view_matrix = Matrix4x4::IdentityMatrix();
 	//Matrix4x4 perspective_matrix = GutMatrixPerspectiveRH_OpenGL(30.0f, g_ratio, 1.0f, 10000.0f);
-	Matrix4x4 perspective_matrix = Matrix4x4::IdentityMatrix();
+	//Matrix4x4 perspective_matrix = Matrix4x4::IdentityMatrix();
 
 	//float fieldOfView = 30.0;
 	//float aspectRatio = g_ratio;
@@ -136,7 +148,7 @@ void InitParticleDrawing()
 	//perspective_matrix[3][2] = d;
 	//perspective_matrix[2][3] = -1;
 
-	perspective_matrix = GutMatrixOrthoRH_OpenGL(2, 2, 1, 10000);
+	Matrix4x4 perspective_matrix = GutMatrixOrthoRH_OpenGL(2, 2, 1, 10000);
 
 	Matrix4x4 view_perspective_matrix = view_matrix * perspective_matrix;
 	glLoadMatrixf((float *) &view_perspective_matrix);
@@ -230,7 +242,6 @@ void RenderFrameOpenGL()
 
 void GetUserInput()
 {
-#if USE_MOUSE
 	GutMouseInfo mouse;
 	GutReadMouse(&mouse);
 	if (mouse.button[0])
@@ -249,34 +260,6 @@ void GetUserInput()
 			track_up(mouse);
 		}
 	}
-#else
-	//keyboard
-	char keyboard_state[256];
-	GutReadKeyboard(keyboard_state);
-	if (keyboard_state[GUTKEY_SPACE])
-	{
-		bIsTouch = true;
-	}else
-	{
-		bIsTouch = false;
-	}
-	if (keyboard_state[GUTKEY_W])
-	{
-		touchY += 0.01;
-	}
-	if (keyboard_state[GUTKEY_S])
-	{
-		touchY -= 0.01;
-	}
-	if (keyboard_state[GUTKEY_A])
-	{
-		touchX += 0.01;
-	}
-	if (keyboard_state[GUTKEY_D])
-	{
-		touchX -= 0.01;
-	}
-#endif
 }
 
 void track_down(GutMouseInfo mouse)
