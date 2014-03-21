@@ -107,7 +107,9 @@ public:
 			GLenum iLastBuffer;
 			glGetIntegerv(GL_READ_BUFFER, (GLint*)&iLastBuffer);
 			glReadBuffer(GL_FRONT);
+#if WIN32
 			glReadPixels(0, 0, m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
+#endif
 			glReadBuffer(iLastBuffer);
 			return ret;
 		}else
