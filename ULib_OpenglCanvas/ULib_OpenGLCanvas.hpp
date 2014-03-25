@@ -13,7 +13,7 @@
 #include "DrawingLogic_EddyParticle.hpp"
 
 #define MAX_SF_SIZE 1 << 8
-#define  HIDE_CANVAS_WND !(_DEBUG)
+#define  HIDE_CANVAS_WND (0)
 #define  DEFAULT_FILLCOLOR 0xff808080
 
 class ULIB_OPENGLCANVAS_API ULib_OpenGLCanvas : public IExOpenGLCanvas{

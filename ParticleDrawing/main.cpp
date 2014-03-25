@@ -11,8 +11,9 @@ using namespace std;
 #include "opencv2/opencv.hpp"
 using namespace cv;
 
-#define  _HIDE_WND_ 0
+#define  USING_LIB 1
 
+#if !USING_LIB
 void RenderFrameOpenGL(void);
 void InitParticleDrawing();
 
@@ -28,16 +29,14 @@ float g_ratio = g_cw / g_ch;
 float g_tw = g_cw / 2.0;
 float g_th = g_ch / 2.0;
 float g_tratio = g_tw / g_th;
+#endif // !USING_LIB
 
 int main(int argc, char *argv[])
 {
+#if USING_LIB
+#else
 	char *device = "opengl";
 	GutCreateWindow(0, 0, g_cw, g_ch, "Particle");
-
-#if _HIDE_WND_
-	HWND hWnd = GutGetWindowHandleWin32();
-	ShowWindow(hWnd, HIDE_WINDOW);
-#endif
 
 	if (!GutInitGraphicsDevice(device))
 	{
@@ -54,8 +53,11 @@ int main(int argc, char *argv[])
 	}
 	GutReleaseGraphicsDevice();
 	GutCloseWindow();
+#endif
 	return 0;
 }
+
+#if !USING_LIB
 
 #define PI 3.1415926535897932
 
@@ -149,7 +151,6 @@ void InitParticleDrawing()
 	//perspective_matrix[2][3] = -1;
 
 	Matrix4x4 perspective_matrix = GutMatrixOrthoRH_OpenGL(2, 2, 1, 10000);
-
 	Matrix4x4 view_perspective_matrix = view_matrix * perspective_matrix;
 	glLoadMatrixf((float *) &view_perspective_matrix);
 }
@@ -284,3 +285,4 @@ void track_up(GutMouseInfo mouse)
 {
 	bIsTouch = false;
 }
+#endif
