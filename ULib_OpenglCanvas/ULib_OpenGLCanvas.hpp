@@ -12,9 +12,9 @@
 #include "IExOpenGLCavas.h"
 #include "DrawingLogic_EddyParticle.hpp"
 
-#define MAX_SF_SIZE 1 << 8
+#define MAX_SF_SIZE (1 << 8)
 #define  HIDE_CANVAS_WND (0)
-#define  DEFAULT_FILLCOLOR 0xff808080
+#define  DEFAULT_FILLCOLOR (0xff808080)
 
 class ULIB_OPENGLCANVAS_API ULib_OpenGLCanvas : public IExOpenGLCanvas{
 public: 
@@ -28,9 +28,10 @@ public:
 
 	}
 
-	HRESULT virtual Init(IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput)
+	HRESULT virtual Init(IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
 	{
 		m_typWrkMod = mode;
+		m_dataFormat = dataFormat;
 
 		m_canvasWidth = canvasWidth;
 		m_canvasHeight = canvasHeight;
@@ -116,7 +117,7 @@ public:
 				glGetIntegerv(GL_READ_BUFFER, (GLint*)&iLastBuffer);
 				glReadBuffer(GL_FRONT);
 #if WIN32
-				glReadPixels(0, 0, m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
+				glReadPixels(0, 0, m_canvasWidth, m_canvasHeight, m_dataFormat, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
 #endif
 				glReadBuffer(iLastBuffer);
 				return ret;
@@ -130,7 +131,7 @@ public:
 			//Receive data from GameEngine
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glDrawPixels(m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
+			glDrawPixels(m_canvasWidth, m_canvasHeight, m_dataFormat, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
 			GutSwapBuffersOpenGL();
 
 			return S_OK;
@@ -144,7 +145,9 @@ public:
 	int m_canvasHeight;
 	int *m_pTargetTexturePixels;
 	HWND m_hWnd;
+
 	EnumWorkingMode m_typWrkMod;
+	UINT m_dataFormat;
 	IExDrawLogic *m_fnDrawingLogic;
 
 };

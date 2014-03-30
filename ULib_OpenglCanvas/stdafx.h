@@ -12,8 +12,8 @@
 #include <windows.h>
 
 
-
 // TODO: 在此处引用程序需要的其他头文件
+#include "TCHAR.H"
 #include <iostream>
 using namespace std;
 
