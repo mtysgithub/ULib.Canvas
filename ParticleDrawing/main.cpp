@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "Gut.h"
-#include "GutWin32.h"
+#include "GutWin32.hpp"
 #include "GutInput.h"
 #include "Vector4.h"
 using namespace std;

@@ -43,8 +43,7 @@ public:
 		__GetUserInput();
 #endif
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+#pragma loop(hint_parallel(4))
 		for (int i = 0; i < PARTICLE_LINE_NUMBER; i+=2)
 		{
 			m_pParticleVertices[i].x = m_pParticleVertices[i + 1].x;

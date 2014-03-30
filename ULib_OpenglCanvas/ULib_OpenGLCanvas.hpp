@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "glew.h"
 #include "Gut.h"
-#include "GutWin32.h"
+#include "GutWin32.hpp"
 #include "GutInput.h"
 #include "IExOpenGLCavas.h"
 #include "DrawingLogic_EddyParticle.hpp"
@@ -28,15 +28,16 @@ public:
 
 	}
 
-	HRESULT virtual Init(IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels)
+	HRESULT virtual Init(IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput)
 	{
+		m_typWrkMod = mode;
+
 		m_canvasWidth = canvasWidth;
 		m_canvasHeight = canvasHeight;
 
 		m_pTargetTexturePixels = pTargetTexturePixels;
 		if(!m_pTargetTexturePixels) 
 		{
-			//memset(m_pTargetTexturePixels, DEFAULT_FILLCOLOR, m_canvasWidth * m_canvasHeight * sizeof(m_pTargetTexturePixels[0]));
 			return E_FAIL;
 		}
 
@@ -83,38 +84,58 @@ public:
 
 	HRESULT virtual Update()
 	{
-		if (GutProcessMessage())
+		switch (m_typWrkMod)
 		{
-			HRESULT ret = S_OK;
+		case DataOutput:
+			//Output data to GameEngine
 
-			//TODO
-			//Process Input Message
-
-			if (m_fnDrawingLogic)
+			if (GutProcessMessage())
 			{
-				ret |= m_fnDrawingLogic->RenderFrame();
+				HRESULT ret = S_OK;
 
-				//Refresh GLCanvas Buff
-				GutSwapBuffersOpenGL();
+				//TODO
+				//Process Input Message
+
+				if (m_fnDrawingLogic)
+				{
+					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+					ret |= m_fnDrawingLogic->RenderFrame();
+
+					//Refresh GLCanvas Buff
+					GutSwapBuffersOpenGL();
+				}
+
+				//Copy gl buff data into targetTexture buff
+				glPixelStorei(GL_PACK_ALIGNMENT, 1);
+				glPixelStorei(GL_PACK_ROW_LENGTH, 0);
+				glPixelStorei(GL_PACK_SKIP_ROWS, 0);
+				glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+
+				GLenum iLastBuffer;
+				glGetIntegerv(GL_READ_BUFFER, (GLint*)&iLastBuffer);
+				glReadBuffer(GL_FRONT);
+#if WIN32
+				glReadPixels(0, 0, m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
+#endif
+				glReadBuffer(iLastBuffer);
+				return ret;
+			}else
+			{
+				//GL message loop has exited.
+				return E_FAIL;
 			}
 
-			//Copy gl buff data into targetTexture buff
-			glPixelStorei(GL_PACK_ALIGNMENT, 1);
-			glPixelStorei(GL_PACK_ROW_LENGTH, 0);
-			glPixelStorei(GL_PACK_SKIP_ROWS, 0);
-			glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
+		case DataInput:
+			//Receive data from GameEngine
 
-			GLenum iLastBuffer;
-			glGetIntegerv(GL_READ_BUFFER, (GLint*)&iLastBuffer);
-			glReadBuffer(GL_FRONT);
-#if WIN32
-			glReadPixels(0, 0, m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
-#endif
-			glReadBuffer(iLastBuffer);
-			return ret;
-		}else
-		{
-			//GL message loop has exited.
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glDrawPixels(m_canvasWidth, m_canvasHeight, GL_RGBA, GL_UNSIGNED_BYTE, m_pTargetTexturePixels);
+			GutSwapBuffersOpenGL();
+
+			return S_OK;
+
+		default:
 			return E_FAIL;
 		}
 	}
@@ -123,7 +144,7 @@ public:
 	int m_canvasHeight;
 	int *m_pTargetTexturePixels;
 	HWND m_hWnd;
-
+	EnumWorkingMode m_typWrkMod;
 	IExDrawLogic *m_fnDrawingLogic;
 
 };

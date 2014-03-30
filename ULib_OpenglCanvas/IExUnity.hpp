@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "ULib_OpenGLCanvas.hpp"
 
-ULIB_OPENGLCANVAS_API HRESULT ULib_GLCanvas_Init(IN BYTE index, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels)
+ULIB_OPENGLCANVAS_API HRESULT ULib_GLCanvas_Init(IN BYTE index, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput)
 {
-	return (ULib_OpenGLCanvas::CreateInstance(index))->Init(canvasWidth, canvasHeight, pTargetTexturePixels);
+	return (ULib_OpenGLCanvas::CreateInstance(index))->Init(canvasWidth, canvasHeight, pTargetTexturePixels, mode);
 }
 
 ULIB_OPENGLCANVAS_API HRESULT ULib_GLCanvas_UnInit(BYTE index)

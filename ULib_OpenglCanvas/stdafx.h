@@ -18,4 +18,8 @@
 using namespace std;
 
 // ∫Í∂®“Â
-#define interface class
+#if WIN32
+	#define interface __interface
+#else
+	#define interface class
+#endif
