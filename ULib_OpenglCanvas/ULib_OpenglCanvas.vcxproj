@@ -60,7 +60,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ModuleDefinitionFile>ex.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);glib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -100,7 +101,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ULib_BaseCanvas.hpp" />
     <ClInclude Include="IExCavas.h" />
-    <ClInclude Include="ULib_OpenGLCanvas.h" />
+    <ClInclude Include="ULib_DX9Canvas.hpp" />
+    <ClInclude Include="ULib_OpenGLCanvas.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -117,9 +119,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ULib_BaseCanvas.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ex.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,7 @@
 #include "stdafx.h"
-#include "ULib_OpenGLCanvas.h"
+#include "ULib_OpenGLCanvas.hpp"
+#include "ULib_DX9Canvas.hpp"
+#include "ULib_BaseCanvas.hpp"
 
 ULib_BaseCanvas* ULib_BaseCanvas::CreateInstance(CONST CHAR *device, int index)
 {
@@ -18,9 +20,7 @@ ULib_BaseCanvas* ULib_BaseCanvas::CreateInstance(CONST CHAR *device, int index)
 	} 
 	else if(0 == strcmp("dx9", device))
 	{
-		// Direct3D
-		// TODO.
-		return NULL;
+		return ppULib_BaseCanvas[index] = new ULib_DX9Canvas ();
 	}else
 	{
 		// Not supported.

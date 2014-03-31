@@ -36,11 +36,14 @@
     <ClInclude Include="ULib_BaseCanvas.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ULib_OpenGLCanvas.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="IExCavas.h">
       <Filter>Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="ULib_OpenGLCanvas.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ULib_DX9Canvas.hpp">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,10 +59,5 @@
     <ClCompile Include="ULib_BaseCanvas.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ex.def">
-      <Filter>源文件</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -1,5 +1,0 @@
-LIBRARY ULIB_CANVAS
-EXPORTS
-	ULib_Canvas_Init
-	ULib_Canvas_UnInit
-	ULib_Canvas_Update
