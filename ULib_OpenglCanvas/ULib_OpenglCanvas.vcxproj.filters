@@ -27,16 +27,19 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ULib_OpenGLCanvas.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="IExOpenGLCavas.h">
-      <Filter>Ex</Filter>
-    </ClInclude>
     <ClInclude Include="DrawingLogic_EddyParticle.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IExDrawLogic.h">
+      <Filter>Ex</Filter>
+    </ClInclude>
+    <ClInclude Include="ULib_BaseCanvas.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ULib_OpenGLCanvas.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IExCavas.h">
       <Filter>Ex</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,11 +50,11 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ULib_OpenGLCanvas.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="IExUnity.hpp">
       <Filter>Ex</Filter>
+    </ClCompile>
+    <ClCompile Include="ULib_BaseCanvas.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

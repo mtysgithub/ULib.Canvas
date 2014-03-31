@@ -1,5 +1,5 @@
-LIBRARY ULIB_OPENGLCANVAS
+LIBRARY ULIB_CANVAS
 EXPORTS
-	ULib_GLCanvas_Init
-	ULib_GLCanvas_UnInit
-	ULib_GLCanvas_Update
+	ULib_Canvas_Init
+	ULib_Canvas_UnInit
+	ULib_Canvas_Update

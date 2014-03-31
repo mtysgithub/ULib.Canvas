@@ -15,7 +15,7 @@ public:
 	EddyParticle(){}
 	~EddyParticle(){}
 
-	HRESULT virtual Init(IN int canvasWidth, IN int canvasHeight)
+	HRESULT virtual Init(IN CONST CHAR *device, IN int canvasWidth, IN int canvasHeight)
 	{
 		m_iCanvasWidth = canvasWidth;
 		m_iCanvasHeight = canvasHeight;

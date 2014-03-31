@@ -11,7 +11,8 @@ using namespace std;
 #include "opencv2/opencv.hpp"
 using namespace cv;
 
-#define  USING_LIB 1
+#define  USING_LIB 0
+#define  USING_GUT_OO 1
 
 #if !USING_LIB
 void RenderFrameOpenGL(void);
@@ -35,6 +36,14 @@ int main(int argc, char *argv[])
 {
 #if USING_LIB
 #else
+
+#if USING_GUT_OO
+	char *device = "opengl";
+	Gut3DWnd *wnd = NULL;
+	int wndIdx = 0;
+	IGutEx_Create_3DWnd(device, 100, 100, 800, 600, false, &wnd, wndIdx);
+	system("pause");
+#else
 	char *device = "opengl";
 	GutCreateWindow(0, 0, g_cw, g_ch, "Particle");
 
@@ -53,6 +62,7 @@ int main(int argc, char *argv[])
 	}
 	GutReleaseGraphicsDevice();
 	GutCloseWindow();
+#endif
 #endif
 	return 0;
 }

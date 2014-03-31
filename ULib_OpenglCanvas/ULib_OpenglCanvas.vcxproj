@@ -14,6 +14,7 @@
     <ProjectGuid>{732EC82A-1473-4D4E-B119-C04014C78F95}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ULib_OpenglCanvas</RootNamespace>
+    <ProjectName>ULib_Canvas</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -52,7 +53,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ULIB_OPENGLCANVAS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ULIB_CANVAS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(GLIB_DIR);$(DXSDK_DIR)\Include;$(OPENCV_DIR)\include</AdditionalIncludeDirectories>
     </ClCompile>
@@ -71,7 +72,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ULIB_OPENGLCANVAS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ULIB_CANVAS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(GLIB_DIR);$(DXSDK_DIR)\Include;$(OPENCV_DIR)\include</AdditionalIncludeDirectories>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
@@ -97,8 +98,9 @@
     <ClInclude Include="IExDrawLogic.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="ULib_OpenGLCanvas.hpp" />
-    <ClInclude Include="IExOpenGLCavas.h" />
+    <ClInclude Include="ULib_BaseCanvas.hpp" />
+    <ClInclude Include="IExCavas.h" />
+    <ClInclude Include="ULib_OpenGLCanvas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -114,7 +116,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ULib_OpenGLCanvas.cpp" />
+    <ClCompile Include="ULib_BaseCanvas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ex.def" />
