@@ -52,19 +52,11 @@ public:
 #else
 		GutInputInit();
 #endif
-
-		//Init DrawLogic
-		return (m_fnDrawingLogic = static_cast<IExDrawLogic *>(new EddyParticle()))->Init(device, canvasWidth, canvasHeight);
 	}
 
 	HRESULT virtual UnInit()
 	{
 		HRESULT ret = S_OK;
-
-		if (m_fnDrawingLogic)
-		{
-			ret |= m_fnDrawingLogic->UnInit();
-		}
 
 		ret |= GutReleaseGraphicsDevice();
 
