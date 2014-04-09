@@ -27,7 +27,7 @@ public:
 
 	HRESULT virtual Update()
 	{
-		if (S_OK == this->ULib_BaseCanvas::Update())
+		if (S_OK == this->ULib_BaseCanvas::Update() /*此处做静态绑定 etc.*/)
 		{
 			switch (m_typWrkMod)
 			{
@@ -83,6 +83,9 @@ public:
 			default:
 				return E_FAIL;
 			}
+		}else
+		{
+			return E_FAIL;
 		}
 	}
 
@@ -100,5 +103,8 @@ public:
 		return ret;
 	}
 #pragma endregion Override IExCanvas
+
+protected:
+	IExDrawLogic *m_fnDrawingLogic;
 };
 

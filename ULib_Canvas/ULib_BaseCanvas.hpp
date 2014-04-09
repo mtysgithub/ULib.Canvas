@@ -52,6 +52,7 @@ public:
 #else
 		GutInputInit();
 #endif
+		return S_OK;
 	}
 
 	HRESULT virtual UnInit()
@@ -89,8 +90,6 @@ protected:
 
 	EnumWorkingMode m_typWrkMod;
 	UINT m_dataFormat;
-	IExDrawLogic *m_fnDrawingLogic;
-
 };
 
 extern ULib_BaseCanvas **ppULib_BaseCanvas;
