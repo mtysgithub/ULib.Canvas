@@ -113,6 +113,8 @@ public:
 		}
 #endif
 
+		m_pVideoOperator->Release();
+
 		//release wnd
 		//if(m_pVdWnd->m_hWnd && IsWindow(m_pVdWnd->m_hWnd))
 		//{
@@ -189,6 +191,14 @@ public:
 #endif
 		bool bIsReadyFrameData = m_pVideoOperator->ReadyFrame(true);
 		memcpy(m_pVideoOperator->VideoMemoryPtr, m_pTargetTexturePixels, m_pVideoOperator->Width * m_pVideoOperator->Height * sizeof(DWORD));
+		//int pinBuffStep = 0;
+		//for (int j = 0; j < m_pVideoOperator->Height; ++j)
+		//{
+		//	for (int i = 0; i < m_pVideoOperator->Width; ++i)
+		//	{
+		//		*((UINT *)(m_pVideoOperator->VideoMemoryPtr) + (j * m_pVideoOperator->Stride + i)) = m_pTargetTexturePixels[pinBuffStep++];
+		//	}
+		//}
 		m_pVideoOperator->RenderFrame();
 		return S_OK;
 	}
