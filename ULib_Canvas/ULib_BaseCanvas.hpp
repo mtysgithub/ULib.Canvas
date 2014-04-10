@@ -18,10 +18,9 @@ public:
 	static HRESULT DestoryInstance(int index);
 
 public:
-	ULib_BaseCanvas(void)
-	{
+	ULib_BaseCanvas(){}
+	virtual ~ULib_BaseCanvas(){}
 
-	}
 #pragma region Override IExCanvas
 	HRESULT virtual Init(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
 	{

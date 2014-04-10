@@ -11,8 +11,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glib", "..\glib\glib_vc2005
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ULib_Canvas", "ULib_Canvas\ULib_Canvas.vcxproj", "{732EC82A-1473-4D4E-B119-C04014C78F95}"
 	ProjectSection(ProjectDependencies) = postProject
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5} = {3C78703B-84B1-44D4-9909-49CC6AEE0CB5}
 		{12323F50-B0EE-4582-9F73-41E67A5699A6} = {12323F50-B0EE-4582-9F73-41E67A5699A6}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectDrawWrapper", "..\RenderingFramework.DirectX\DirectDrawWrapper.vcxproj", "{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +93,26 @@ Global
 		{732EC82A-1473-4D4E-B119-C04014C78F95}.Release|Win32.ActiveCfg = Release|Win32
 		{732EC82A-1473-4D4E-B119-C04014C78F95}.Release|Win32.Build.0 = Release|Win32
 		{732EC82A-1473-4D4E-B119-C04014C78F95}.Release|x64.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug_DX10|Mixed Platforms.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug_DX10|Mixed Platforms.Build.0 = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug_DX10|Win32.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug_DX10|Win32.Build.0 = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug_DX10|x64.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug|Win32.Build.0 = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Debug|x64.ActiveCfg = Debug|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release_DX10|Mixed Platforms.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release_DX10|Mixed Platforms.Build.0 = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release_DX10|Win32.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release_DX10|Win32.Build.0 = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release_DX10|x64.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release|Win32.ActiveCfg = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release|Win32.Build.0 = Release|Win32
+		{3C78703B-84B1-44D4-9909-49CC6AEE0CB5}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
