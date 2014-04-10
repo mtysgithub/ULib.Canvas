@@ -4,12 +4,12 @@
 
 #ifdef DIRECT3D_VERSION
 #if 0x0900 == DIRECT3D_VERSION
-class ULib_DX9Canvas :
+class ULib_D3D9Canvas :
 	public ULib_BaseCanvas
 {
 public:
-	ULib_DX9Canvas(void){}
-	virtual ~ULib_DX9Canvas(void){}
+	ULib_D3D9Canvas(void){}
+	virtual ~ULib_D3D9Canvas(void){}
 #pragma region Override IExCanvas
 	HRESULT virtual Update()
 	{
@@ -20,6 +20,7 @@ public:
 			case DataOutput:
 				{
 					//TODO.
+					//See ULib_OpenGLCanvas.hpp.
 					return S_OK;
 				}
 			case DataInput:
@@ -42,8 +43,8 @@ public:
 
 						//释放写锁
 						pSurface->UnlockRect();
-						//获取D3D默认交换链中的后台缓存 
-						IDirect3DSurface9* backBuffer = 0; 
+						//获取D3D默认交换链中的后台缓存
+						IDirect3DSurface9 *backBuffer = 0; 
 						pDx9Device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuffer); 
 						//使用自定义渲染表面填充后台缓存 
 						pDx9Device->StretchRect(pSurface, 0, backBuffer, 0, D3DTEXF_NONE); 

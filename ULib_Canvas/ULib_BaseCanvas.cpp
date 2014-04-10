@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ULib_OpenGLCanvas.hpp"
-#include "ULib_DX9Canvas.hpp"
+#include "ULib_D3D9Canvas.hpp"
 #include "ULib_BaseCanvas.hpp"
 
 ULib_BaseCanvas* ULib_BaseCanvas::CreateInstance(CONST CHAR *device, int index)
@@ -20,7 +20,7 @@ ULib_BaseCanvas* ULib_BaseCanvas::CreateInstance(CONST CHAR *device, int index)
 	} 
 	else if(0 == strcmp("dx9", device))
 	{
-		return ppULib_BaseCanvas[index] = new ULib_DX9Canvas ();
+		return ppULib_BaseCanvas[index] = new ULib_D3D9Canvas ();
 	}else
 	{
 		// Not supported.

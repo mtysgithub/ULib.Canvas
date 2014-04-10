@@ -42,7 +42,10 @@
     <ClInclude Include="ULib_OpenGLCanvas.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ULib_DX9Canvas.hpp">
+    <ClInclude Include="ULib_VideoCanvas.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ULib_D3D9Canvas.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
