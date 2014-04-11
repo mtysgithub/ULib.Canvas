@@ -190,15 +190,17 @@ public:
 		buffFlag = !buffFlag;
 #endif
 		bool bIsReadyFrameData = m_pVideoOperator->ReadyFrame(true);
-		memcpy(m_pVideoOperator->VideoMemoryPtr, m_pTargetTexturePixels, m_pVideoOperator->Width * m_pVideoOperator->Height * sizeof(DWORD));
-		//int pinBuffStep = 0;
-		//for (int j = 0; j < m_pVideoOperator->Height; ++j)
-		//{
-		//	for (int i = 0; i < m_pVideoOperator->Width; ++i)
-		//	{
-		//		*((UINT *)(m_pVideoOperator->VideoMemoryPtr) + (j * m_pVideoOperator->Stride + i)) = m_pTargetTexturePixels[pinBuffStep++];
-		//	}
-		//}
+		/*
+		* 处理链接中所述的特殊情况，不直接使用memcpy();
+		* http://hi.baidu.com/daoguchengshu/item/06aa4a09d3ca7810ebfe3815
+		*/
+		for (int j = 0; j < m_pVideoOperator->Height; ++j)
+		{
+			for (int i = 0; i < m_pVideoOperator->Width; ++i)
+			{
+				((UINT *)(m_pVideoOperator->VideoMemoryPtr))[j * m_pVideoOperator->Stride + i] = m_pTargetTexturePixels[j * m_canvasWidth + i];
+			}
+		}
 		m_pVideoOperator->RenderFrame();
 		return S_OK;
 	}
