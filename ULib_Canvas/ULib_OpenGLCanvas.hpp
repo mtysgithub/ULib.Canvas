@@ -14,13 +14,13 @@ public:
 	}
 
 #pragma region Override IExCanvas
-	HRESULT virtual Init(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
+	HRESULT virtual Initialize(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
 	{
-		HRESULT ret = this->ULib_BaseCanvas::Init(device, wndName, canvasWidth, canvasHeight, pTargetTexturePixels, mode, dataFormat);
+		HRESULT ret = this->ULib_BaseCanvas::Initialize(device, wndName, canvasWidth, canvasHeight, pTargetTexturePixels, mode, dataFormat);
 		if (S_OK == ret)
 		{
 			//Init DrawLogic
-			return ret |= (m_fnDrawingLogic = static_cast<IExDrawLogic *>(new EddyParticle()))->Init(device, canvasWidth, canvasHeight);
+			return ret |= (m_fnDrawingLogic = static_cast<IExDrawLogic *>(new EddyParticle()))->Initialize(device, canvasWidth, canvasHeight);
 		}
 		return ret;
 	}
@@ -89,16 +89,16 @@ public:
 		}
 	}
 
-	HRESULT virtual UnInit()
+	HRESULT virtual Release()
 	{
 		HRESULT ret = S_OK;
 		if (m_fnDrawingLogic)
 		{
-			ret |= m_fnDrawingLogic->UnInit();
+			ret |= m_fnDrawingLogic->Release();
 		}
 		if (S_OK == ret)
 		{
-			return ret |= this->ULib_BaseCanvas::UnInit();
+			return ret |= this->ULib_BaseCanvas::Release();
 		}
 		return ret;
 	}

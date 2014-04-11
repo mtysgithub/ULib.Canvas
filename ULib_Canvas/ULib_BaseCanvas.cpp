@@ -49,7 +49,7 @@ HRESULT ULib_BaseCanvas::DestoryInstance(int index)
 {
 	if (ppULib_BaseCanvas[index])
 	{
-		ppULib_BaseCanvas[index]->UnInit();
+		ppULib_BaseCanvas[index]->Release();
 		delete ppULib_BaseCanvas[index];
 		ppULib_BaseCanvas[index] = NULL;
 		return S_OK;

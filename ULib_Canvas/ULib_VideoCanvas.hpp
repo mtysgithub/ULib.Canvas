@@ -21,9 +21,9 @@ class ULib_VideoCanvas
 {
 public:
 	ULib_VideoCanvas(){}
-	virtual ~ULib_VideoCanvas(){if(!m_releaseFlag) UnInit();}
+	virtual ~ULib_VideoCanvas(){if(!m_releaseFlag) Release();}
 
-	HRESULT virtual Init(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
+	HRESULT virtual Initialize(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
 	{
 		m_pTargetTexturePixels = pTargetTexturePixels;
 		m_canvasWidth = canvasWidth;
@@ -95,7 +95,7 @@ public:
 		return S_OK;
 	}
 
-	HRESULT virtual UnInit()
+	HRESULT virtual Release()
 	{
 		HRESULT ret = S_OK;
 

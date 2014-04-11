@@ -15,7 +15,7 @@ public:
 	EddyParticle(){}
 	~EddyParticle(){}
 
-	HRESULT virtual Init(IN CONST CHAR *device, IN int canvasWidth, IN int canvasHeight)
+	HRESULT virtual Initialize(IN CONST CHAR *device, IN int canvasWidth, IN int canvasHeight)
 	{
 		m_iCanvasWidth = canvasWidth;
 		m_iCanvasHeight = canvasHeight;
@@ -26,14 +26,14 @@ public:
 		return S_OK;
 	}
 
-	HRESULT virtual UnInit()
+	HRESULT virtual Release()
 	{
-		//if(m_pEyePos) delete m_pEyePos;
-		//if(m_pLookat) delete m_pLookat;
-		//if(m_pUp) delete m_pUp;
+		if(m_pEyePos) delete m_pEyePos;
+		if(m_pLookat) delete m_pLookat;
+		if(m_pUp) delete m_pUp;
 
-		//if(m_pParticleVertices) delete m_pParticleVertices;
-		//if(m_pVelocities) delete m_pVelocities;
+		if(m_pParticleVertices) delete [] m_pParticleVertices;
+		if(m_pVelocities) delete [] m_pVelocities;
 		return S_OK;
 	}
 

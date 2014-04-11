@@ -22,7 +22,7 @@ public:
 	virtual ~ULib_BaseCanvas(){}
 
 #pragma region Override IExCanvas
-	HRESULT virtual Init(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
+	HRESULT virtual Initialize(IN CONST CHAR *device, IN CONST CHAR *wndName, IN int canvasWidth, IN int canvasHeight, IN int *pTargetTexturePixels, IN EnumWorkingMode mode = EnumWorkingMode::DataOutput, IN UINT dataFormat = GL_BGRA)
 	{
 		m_pDevice = new CHAR [strlen(device) + 1];
 		strcpy_s(m_pDevice, strlen(device) + 1, device);
@@ -54,7 +54,7 @@ public:
 		return S_OK;
 	}
 
-	HRESULT virtual UnInit()
+	HRESULT virtual Release()
 	{
 		HRESULT ret = S_OK;
 
