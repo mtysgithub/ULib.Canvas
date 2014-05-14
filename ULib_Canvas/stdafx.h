@@ -18,7 +18,8 @@
 using namespace std;
 
 // ∫Í∂®“Â
- #define  _CRT_SECURE_NO_WARNINGS
+#define USING_OO_WND 1
+#define  _CRT_SECURE_NO_WARNINGS
 #if WIN32
 	#define interface __interface
 #else
